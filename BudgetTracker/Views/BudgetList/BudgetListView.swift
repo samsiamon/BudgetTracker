@@ -13,63 +13,66 @@ struct BudgetListView: View {
     @State var showAddItemView = false
 
     var body: some View {
-        ZStack {
-            Rectangle()
-                .foregroundColor(.blue)
-            VStack {
-                ZStack {
-                    Rectangle()
-                        .foregroundColor(.white)
-                    Picker(
-                        "/ " + budgetListManager.frequencyFilter.name,
-                        selection: $budgetListManager.frequencyFilter) {
-                            ForEach(ItemFrequency.allCases) { freq in
-                                Text("/ " + freq.name)
-                            }
-                        }
-                }
-                .frame(maxWidth: .infinity, maxHeight:100)
-                List {
-
-                    ForEach(budgetListManager.budgetList) { item in
-                        BudgetItemView(budgetItem: item)
-                            .swipeActions(edge: .trailing) {
-                                Button(role: .destructive) {
-                                    budgetListManager.removeBudgetItem(id: item.id)
-                                } label: {
-                                    Label("Delete", systemImage: "trash")
-                                }
-                            }
-                    }
-
-                }
-                ZStack {
-                    Rectangle()
-                        .foregroundColor(.white)
-                    VStack {
-                        HStack {
-                            Text("Total:")
-                            Text("$" + String(format: "%.2f", budgetListManager.total))
-                                .foregroundColor(budgetListManager.total < 0 ? .red : .green)
-                        }
-                        .font(.title)
-                        .bold()
-                        Button("Add New Item") {
-                            showAddItemView = true
-                        }
-                        .popover(isPresented: $showAddItemView) {
-                            AddBudgetItemView {
-                                showAddItemView = false
-                            }
-                        }
+        VStack {
+            Spacer()
+            Picker(
+                "/ " + budgetListManager.frequencyFilter.name,
+                selection: $budgetListManager.frequencyFilter) {
+                    ForEach(ItemFrequency.allCases) { freq in
+                        Text("/ " + freq.name)
                     }
                 }
-                .frame(alignment: .bottom)
-                .frame(maxWidth: .infinity, maxHeight:100)
+
+            List {
+                if budgetListManager.budgetList.isEmpty {
+                    HStack {
+                        Spacer()
+                        Text("Add a new item!")
+                            .fontWeight(.heavy)
+                            .foregroundColor(.blue)
+                            .onTapGesture {
+                                showAddItemView = true
+                            }
+                        Spacer()
+                    }
+                }
+                ForEach(budgetListManager.budgetList) { item in
+                    BudgetItemView(budgetItem: item)
+                        .swipeActions(edge: .trailing) {
+                            Button(role: .destructive) {
+                                budgetListManager.removeBudgetItem(id: item.id)
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                        }
+                }
             }
-            .padding(.top)
+            
+            Spacer()
+
+            VStack {
+                HStack {
+                    Text("Total:")
+                    Text("$" + String(format: "%.2f", budgetListManager.total))
+                        .foregroundColor(budgetListManager.total < 0 ? .red : .green)
+                    Text("/ " + budgetListManager.frequencyFilter.name)
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                }
+                .font(.title)
+                .bold()
+                Button("Add New Item") {
+                    showAddItemView = true
+                }
+            }
+            .frame(alignment: .bottom)
         }
-        .frame(height: .infinity, alignment: .center)
+        .popover(isPresented: $showAddItemView) {
+            AddBudgetItemView {
+                showAddItemView = false
+            }
+        }
+        .padding(.top)
     }
 }
 

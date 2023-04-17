@@ -20,6 +20,7 @@ struct BudgetItemView: View {
                         .font(.title)
                         .bold()
                 }
+                Spacer()
                 VStack {
                     Text("$" + String(format: "%.2f", budgetItem.totalChangePerYear * budgetListManager.frequencyFilter.rawValue))
                         .foregroundColor(budgetItem.itemType == .expense ? .red : .green)
@@ -30,6 +31,7 @@ struct BudgetItemView: View {
                         .foregroundColor(.gray)
                 }
             }
+            .padding(.horizontal)
             .foregroundColor(.black)
         }
         .frame(maxWidth: .infinity, maxHeight: 103)
@@ -41,7 +43,7 @@ struct BudgetItemView_Previews: PreviewProvider {
     static var previews: some View {
         BudgetItemView(
             budgetItem:
-                        BudgetItem(name: "name", itemType: .income, reoccurance: .monthly, amount: 3000)
+                        BudgetItem(name: "Name", itemType: .income, reoccurance: .monthly, amount: 3000)
         )
             .previewLayout(.sizeThatFits)
             .environmentObject(BudgetListManager())
