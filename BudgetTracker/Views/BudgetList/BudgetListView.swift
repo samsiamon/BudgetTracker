@@ -23,24 +23,24 @@ struct BudgetListView: View {
                     Picker(
                         "/ " + budgetListManager.frequencyFilter.name,
                         selection: $budgetListManager.frequencyFilter) {
-                        ForEach(ItemFrequency.allCases) { freq in
-                            Text("/ " + freq.name)
+                            ForEach(ItemFrequency.allCases) { freq in
+                                Text("/ " + freq.name)
+                            }
                         }
-                    }
                 }
                 .frame(maxWidth: .infinity, maxHeight:100)
                 List {
-    
-                            ForEach(budgetListManager.budgetList) { item in
-                                BudgetItemView(budgetItem: item)
-                                    .swipeActions(edge: .trailing) {
-                                        Button(role: .destructive) {
-                                            budgetListManager.removeBudgetItem(id: item.id)
-                                        } label: {
-                                            Label("Delete", systemImage: "trash")
-                                        }
-                                    }
+
+                    ForEach(budgetListManager.budgetList) { item in
+                        BudgetItemView(budgetItem: item)
+                            .swipeActions(edge: .trailing) {
+                                Button(role: .destructive) {
+                                    budgetListManager.removeBudgetItem(id: item.id)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
                             }
+                    }
 
                 }
                 ZStack {
