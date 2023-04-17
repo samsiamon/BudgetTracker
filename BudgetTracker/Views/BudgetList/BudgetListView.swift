@@ -10,7 +10,9 @@ import SwiftUI
 struct BudgetListView: View {
 
     @EnvironmentObject var budgetListManager: BudgetListManager
-    @State var showAddItemView = false
+    @State var selectedItem: BudgetItem?
+    @State var popover: BudgetListPopovers = .add
+    @State var showPopover = false
 
     var body: some View {
         VStack {
@@ -31,7 +33,8 @@ struct BudgetListView: View {
                             .fontWeight(.heavy)
                             .foregroundColor(.blue)
                             .onTapGesture {
-                                showAddItemView = true
+                                popover = .add
+                                showPopover = true
                             }
                         Spacer()
                     }
@@ -43,6 +46,13 @@ struct BudgetListView: View {
                                 budgetListManager.removeBudgetItem(id: item.id)
                             } label: {
                                 Label("Delete", systemImage: "trash")
+                            }
+                            Button() {
+                                selectedItem = item
+                                popover = .edit
+                                showPopover = true
+                            } label: {
+                                Label("Edit", systemImage: "pencil.line")
                             }
                         }
                 }
@@ -62,14 +72,23 @@ struct BudgetListView: View {
                 .font(.title)
                 .bold()
                 Button("Add New Item") {
-                    showAddItemView = true
+                    popover = .add
+                    showPopover = true
                 }
             }
             .frame(alignment: .bottom)
         }
-        .popover(isPresented: $showAddItemView) {
-            AddBudgetItemView {
-                showAddItemView = false
+        .popover(isPresented: $showPopover) {
+            switch (popover) {
+            case .add:
+                AddBudgetItemView {
+                    showPopover = false
+                }
+            case .edit:
+                UpdateBudgetItemView(itemDetails: selectedItem!) {
+                    showPopover = false
+                    selectedItem = nil
+                }
             }
         }
         .padding(.top)
@@ -81,4 +100,8 @@ struct BudgetListView_Previews: PreviewProvider {
         BudgetListView()
             .environmentObject(BudgetListManager())
     }
+}
+
+enum BudgetListPopovers {
+    case add, edit
 }

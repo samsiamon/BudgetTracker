@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BudgetItemView: View {
     @EnvironmentObject var budgetListManager: BudgetListManager
-    @State var budgetItem: BudgetItem
+    var budgetItem: BudgetItem
 
     var body: some View {
         ZStack (alignment: .center) {
@@ -43,7 +43,7 @@ struct BudgetItemView_Previews: PreviewProvider {
     static var previews: some View {
         BudgetItemView(
             budgetItem:
-                        BudgetItem(name: "Name", itemType: .income, reoccurance: .monthly, amount: 3000)
+                    BudgetItem(name: "Name", itemType: .income, reoccurance: .monthly, amount: 3000)
         )
             .previewLayout(.sizeThatFits)
             .environmentObject(BudgetListManager())

@@ -35,4 +35,14 @@ class BudgetListManager: ObservableObject {
             print("could not find item with id: " + id.uuidString)
         }
     }
+
+    func updateBudgetItem(item: BudgetItem) {
+        guard let index = budgetList.firstIndex(where: { listItem in
+            return listItem.id == item.id
+        }) else {
+            print("could not find item with id: " + item.id.uuidString)
+            return
+        }
+        budgetList[index] = item
+    }
 }

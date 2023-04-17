@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		536D7CF729ECD195001FE9F9 /* ItemFrequency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536D7CF629ECD195001FE9F9 /* ItemFrequency.swift */; };
-		536D7CF929EDAE26001FE9F9 /* AddBudgetItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536D7CF829EDAE26001FE9F9 /* AddBudgetItemViewModel.swift */; };
 		536D7CFB29EDB2F1001FE9F9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536D7CFA29EDB2F1001FE9F9 /* MainView.swift */; };
 		539E867829EDC75100782673 /* BudgetItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539E867729EDC75100782673 /* BudgetItemViewModel.swift */; };
+		539E867C29EDECA600782673 /* UpdateBudgetItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539E867B29EDECA600782673 /* UpdateBudgetItemView.swift */; };
 		53EFE81229EC8BE900ADA546 /* BudgetTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EFE81129EC8BE900ADA546 /* BudgetTrackerApp.swift */; };
 		53EFE81629EC8BE900ADA546 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53EFE81529EC8BE900ADA546 /* Assets.xcassets */; };
 		53EFE81929EC8BE900ADA546 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53EFE81829EC8BE900ADA546 /* Preview Assets.xcassets */; };
@@ -44,9 +44,9 @@
 
 /* Begin PBXFileReference section */
 		536D7CF629ECD195001FE9F9 /* ItemFrequency.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItemFrequency.swift; path = BudgetTracker/Util/ItemFrequency.swift; sourceTree = SOURCE_ROOT; };
-		536D7CF829EDAE26001FE9F9 /* AddBudgetItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetItemViewModel.swift; sourceTree = "<group>"; };
 		536D7CFA29EDB2F1001FE9F9 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		539E867729EDC75100782673 /* BudgetItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetItemViewModel.swift; sourceTree = "<group>"; };
+		539E867B29EDECA600782673 /* UpdateBudgetItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBudgetItemView.swift; sourceTree = "<group>"; };
 		53EFE80E29EC8BE900ADA546 /* BudgetTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53EFE81129EC8BE900ADA546 /* BudgetTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTrackerApp.swift; sourceTree = "<group>"; };
 		53EFE81529EC8BE900ADA546 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -89,6 +89,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		539E867929EDEC6600782673 /* AddBudgetItem */ = {
+			isa = PBXGroup;
+			children = (
+				53EFE84A29EC938600ADA546 /* AddBudgetItemView.swift */,
+			);
+			path = AddBudgetItem;
+			sourceTree = "<group>";
+		};
+		539E867A29EDEC7C00782673 /* UpdateBudgetItem */ = {
+			isa = PBXGroup;
+			children = (
+				539E867B29EDECA600782673 /* UpdateBudgetItemView.swift */,
+			);
+			path = UpdateBudgetItem;
+			sourceTree = "<group>";
+		};
 		53EFE80529EC8BE900ADA546 = {
 			isa = PBXGroup;
 			children = (
@@ -179,8 +195,8 @@
 			children = (
 				53EFE84529EC934700ADA546 /* BudgetItemView.swift */,
 				539E867729EDC75100782673 /* BudgetItemViewModel.swift */,
-				53EFE84A29EC938600ADA546 /* AddBudgetItemView.swift */,
-				536D7CF829EDAE26001FE9F9 /* AddBudgetItemViewModel.swift */,
+				539E867A29EDEC7C00782673 /* UpdateBudgetItem */,
+				539E867929EDEC6600782673 /* AddBudgetItem */,
 			);
 			path = BudgetItem;
 			sourceTree = "<group>";
@@ -324,9 +340,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				536D7CF929EDAE26001FE9F9 /* AddBudgetItemViewModel.swift in Sources */,
 				53EFE84B29EC938600ADA546 /* AddBudgetItemView.swift in Sources */,
 				536D7CF729ECD195001FE9F9 /* ItemFrequency.swift in Sources */,
+				539E867C29EDECA600782673 /* UpdateBudgetItemView.swift in Sources */,
 				53EFE84629EC934700ADA546 /* BudgetItemView.swift in Sources */,
 				53EFE83C29EC8C0500ADA546 /* BudgetItem.swift in Sources */,
 				53EFE84D29EC939F00ADA546 /* BudgetListManager.swift in Sources */,
