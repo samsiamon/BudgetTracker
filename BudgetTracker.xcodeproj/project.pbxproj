@@ -12,6 +12,9 @@
 		539E867829EDC75100782673 /* BudgetItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539E867729EDC75100782673 /* BudgetItemViewModel.swift */; };
 		539E867C29EDECA600782673 /* UpdateBudgetItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539E867B29EDECA600782673 /* UpdateBudgetItemView.swift */; };
 		539E867F29EDF6C200782673 /* BudgetListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539E867E29EDF6C200782673 /* BudgetListService.swift */; };
+		539E868229EF087100782673 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539E868129EF087100782673 /* LoginView.swift */; };
+		539E868429EF089900782673 /* LoginViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539E868329EF089900782673 /* LoginViewManager.swift */; };
+		539E868629EF08E600782673 /* SceneManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539E868529EF08E600782673 /* SceneManager.swift */; };
 		53EFE81229EC8BE900ADA546 /* BudgetTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EFE81129EC8BE900ADA546 /* BudgetTrackerApp.swift */; };
 		53EFE81629EC8BE900ADA546 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53EFE81529EC8BE900ADA546 /* Assets.xcassets */; };
 		53EFE81929EC8BE900ADA546 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53EFE81829EC8BE900ADA546 /* Preview Assets.xcassets */; };
@@ -49,6 +52,9 @@
 		539E867729EDC75100782673 /* BudgetItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetItemViewModel.swift; sourceTree = "<group>"; };
 		539E867B29EDECA600782673 /* UpdateBudgetItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateBudgetItemView.swift; sourceTree = "<group>"; };
 		539E867E29EDF6C200782673 /* BudgetListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetListService.swift; sourceTree = "<group>"; };
+		539E868129EF087100782673 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		539E868329EF089900782673 /* LoginViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewManager.swift; sourceTree = "<group>"; };
+		539E868529EF08E600782673 /* SceneManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneManager.swift; sourceTree = "<group>"; };
 		53EFE80E29EC8BE900ADA546 /* BudgetTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BudgetTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53EFE81129EC8BE900ADA546 /* BudgetTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetTrackerApp.swift; sourceTree = "<group>"; };
 		53EFE81529EC8BE900ADA546 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -113,6 +119,15 @@
 				539E867E29EDF6C200782673 /* BudgetListService.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		539E868029EF085C00782673 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				539E868129EF087100782673 /* LoginView.swift */,
+				539E868329EF089900782673 /* LoginViewManager.swift */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 		53EFE80529EC8BE900ADA546 = {
@@ -185,6 +200,7 @@
 		53EFE83E29EC8C7400ADA546 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				539E868529EF08E600782673 /* SceneManager.swift */,
 				536D7CF629ECD195001FE9F9 /* ItemFrequency.swift */,
 				53EFE83F29EC8C9100ADA546 /* ItemType.swift */,
 			);
@@ -194,6 +210,7 @@
 		53EFE84329EC931800ADA546 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				539E868029EF085C00782673 /* Login */,
 				53EFE84E29EC93B200ADA546 /* BudgetList */,
 				53EFE84929EC937300ADA546 /* BudgetItem */,
 				536D7CFA29EDB2F1001FE9F9 /* MainView.swift */,
@@ -358,9 +375,12 @@
 				53EFE84629EC934700ADA546 /* BudgetItemView.swift in Sources */,
 				53EFE83C29EC8C0500ADA546 /* BudgetItem.swift in Sources */,
 				53EFE84D29EC939F00ADA546 /* BudgetListManager.swift in Sources */,
+				539E868629EF08E600782673 /* SceneManager.swift in Sources */,
 				539E867829EDC75100782673 /* BudgetItemViewModel.swift in Sources */,
 				53EFE84829EC935000ADA546 /* BudgetListView.swift in Sources */,
 				536D7CFB29EDB2F1001FE9F9 /* MainView.swift in Sources */,
+				539E868429EF089900782673 /* LoginViewManager.swift in Sources */,
+				539E868229EF087100782673 /* LoginView.swift in Sources */,
 				53EFE84029EC8C9100ADA546 /* ItemType.swift in Sources */,
 				53EFE81229EC8BE900ADA546 /* BudgetTrackerApp.swift in Sources */,
 			);

@@ -9,14 +9,26 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var budgetListManager = BudgetListManager()
+    @EnvironmentObject var sceneManager: SceneManager
     var body: some View {
-        BudgetListView()
-            .environmentObject(budgetListManager)
+        switch(sceneManager.scene) {
+        case .loggedIn:
+            BudgetListView()
+                .environmentObject(budgetListManager)
+        case .loggedOut:
+            LoginView()
+                .onAppear {
+                    sceneManager.loginSilently()
+                }
+        case .launch:
+            EmptyView()
+        }
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
+            .environmentObject(SceneManager())
     }
 }
