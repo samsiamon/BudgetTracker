@@ -24,6 +24,7 @@ struct BudgetListView: View {
                         Text("/ " + freq.name)
                     }
                 }
+                .tint(AppColors.color3)
 
             List {
                 if budgetListManager.budgetList.isEmpty {
@@ -31,11 +32,11 @@ struct BudgetListView: View {
                         Spacer()
                         Text("Add a new item!")
                             .fontWeight(.heavy)
-                            .foregroundColor(.blue)
+                            .foregroundColor(AppColors.color3)
                             .onTapGesture {
                                 popover = .add
                                 showPopover = true
-                            }
+                        }
                         Spacer()
                     }
                 }
@@ -57,7 +58,8 @@ struct BudgetListView: View {
                         }
                 }
             }
-            
+            .background(AppColors.color1)
+            .scrollContentBackground(.hidden)
             Spacer()
 
             VStack {

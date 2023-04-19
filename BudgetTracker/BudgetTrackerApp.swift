@@ -10,7 +10,6 @@ import SwiftUI
 @main
 struct BudgetTrackerApp: App {
     @StateObject var sceneManager = SceneManager()
-
     var body: some Scene {
         WindowGroup {
             MainView()

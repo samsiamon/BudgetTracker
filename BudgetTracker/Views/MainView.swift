@@ -11,17 +11,30 @@ struct MainView: View {
     @StateObject var budgetListManager = BudgetListManager()
     @EnvironmentObject var sceneManager: SceneManager
     var body: some View {
-        switch(sceneManager.scene) {
-        case .loggedIn:
-            BudgetListView()
-                .environmentObject(budgetListManager)
-        case .loggedOut:
-            LoginView()
-                .onAppear {
-                    sceneManager.loginSilently()
+        ZStack {
+            Rectangle()
+                .frame(width: .infinity, height: .infinity)
+                .edgesIgnoringSafeArea(.all)
+                .foregroundColor(AppColors.color1)
+            VStack {
+                switch(sceneManager.scene) {
+                case .loggedIn:
+                    BudgetListView()
+                        .environmentObject(budgetListManager)
+                case .loggedOut:
+                    LoginView()
+                        .task {
+                            sceneManager.currentUser = await sceneManager.loginSilently()
+                        }
+                case .launch:
+                    EmptyView()
                 }
-        case .launch:
-            EmptyView()
+                if (sceneManager.scene == .loggedIn) {
+                    NavBar()
+                        .frame(alignment: .bottom)
+                }
+            }
+            .foregroundColor(AppColors.color3)
         }
     }
 }
