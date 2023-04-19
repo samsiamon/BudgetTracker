@@ -15,14 +15,10 @@ class SceneManager: ObservableObject {
 
     func loginSilently() async -> UserModel? {
         do {
-            guard let user = currentUser else {
+            guard let idString = UserDefaults.standard.string(forKey: "userId") else {
                 throw LoginError.couldNotLogin
             }
-            let responseUser = try await userService.loginUserWithId(id: user.id)
-            if user != responseUser {
-                throw LoginError.couldNotLogin
-            }
-            guard let userId: UUID = UUID(uuidString: UserDefaults.standard.string(forKey: "userId")!) else {
+            guard let userId: UUID = UUID(uuidString: idString) else {
                 throw LoginError.couldNotLogin
             }
             guard let userData: UserModel = try await userService.loginUserWithId(id: userId) else {
@@ -56,6 +52,7 @@ class SceneManager: ObservableObject {
 
     func logout() async {
         currentUser = nil
+        UserDefaults.standard.removeObject(forKey: "userId")
         scene = .loggedOut
     }
 }
