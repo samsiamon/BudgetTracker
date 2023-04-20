@@ -24,7 +24,7 @@ struct MainView: View {
                 case .loggedOut:
                     LoginView()
                         .task {
-                            sceneManager.currentUser = await sceneManager.loginSilently()
+                            await sceneManager.loginSilently()
                         }
                 case .launch:
                     EmptyView()

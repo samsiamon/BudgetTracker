@@ -13,7 +13,7 @@ class SceneManager: ObservableObject {
     @Published var scene: SceneView = .loggedOut
     private let userService = UserService()
 
-    func loginSilently() async -> UserModel? {
+    func loginSilently() async {
         do {
             guard let idString = UserDefaults.standard.string(forKey: "userId") else {
                 throw LoginError.couldNotLogin
@@ -24,29 +24,27 @@ class SceneManager: ObservableObject {
             guard let userData: UserModel = try await userService.loginUserWithId(id: userId) else {
                 throw LoginError.couldNotLogin
             }
+            currentUser = userData
             scene = .loggedIn
-            return userData
         } catch {
             print("Could not login, please try again")
-            return nil
         }
     }
 
-    func loginWithEmailAndPassword(email: String, password: String) async -> UserModel? {
+    func loginWithEmailAndPassword(userDTO: UserDTO) async {
         do {
-            guard let user = try await userService.loginUserWithEmailAndPassword(email: email) else {
+            guard let user = try await userService.loginUserWithEmailAndPassword(email: userDTO.email) else {
                 throw LoginError.couldNotLogin
             }
-            if password != user.password {
+            if userDTO.password != user.password {
                 throw LoginError.couldNotLogin
             }
             let defaults = UserDefaults.standard
             defaults.set(user.id.uuidString, forKey: "userId")
+            currentUser = user
             scene = .loggedIn
-            return user
         } catch {
             print("Could not login")
-            return nil
         }
     }
 
@@ -54,6 +52,20 @@ class SceneManager: ObservableObject {
         currentUser = nil
         UserDefaults.standard.removeObject(forKey: "userId")
         scene = .loggedOut
+    }
+
+    func createAccount(user: UserDTO) async {
+        do {
+            guard let user = try await userService.createAccount(user: user) else {
+                throw HTTPError.accountCreationError
+            }
+            let defaults = UserDefaults.standard
+            defaults.set(user.id.uuidString, forKey: "userId")
+            currentUser = user
+            scene = .loggedIn
+        } catch {
+            print("Could not create account")
+        }
     }
 }
 

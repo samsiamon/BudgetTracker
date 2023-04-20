@@ -1,17 +1,17 @@
 //
-//  LoginView.swift
+//  SignUpView.swift
 //  BudgetTracker
 //
-//  Created by Sam.Siamon on 4/18/23.
+//  Created by Sam.Siamon on 4/20/23.
 //
 
 import SwiftUI
 
-struct LoginView: View {
+struct SignUpView: View {
     @EnvironmentObject var sceneManager: SceneManager
-
     @State var user: UserDTO = UserDTO(email: "", password: "")
-    @State var showSignUp = false
+    @State var isDisabled = true
+    @State var confirmPassword: String = ""
 
     var body: some View {
         VStack(alignment: .center) {
@@ -29,41 +29,35 @@ struct LoginView: View {
                 SecureField("Your Password", text: $user.password)
 
             }
-            Button("Login") {
+            HStack {
+                Text("Confirm Password: ")
+                    .bold()
+                SecureField("Confirm Password", text: $confirmPassword)
+                    .onChange(of: confirmPassword) { password in
+                        isDisabled = user.password != password
+                    }
+            }
+            if user.password != confirmPassword {
+                Text("Passwords do not match")
+                    .foregroundColor(.red)
+            }
+            Button("Create Account") {
                 Task {
-                    await sceneManager.loginWithEmailAndPassword(userDTO: user)
+                    await sceneManager.createAccount(user: user)
                 }
             }
-            .buttonStyle(.borderedProminent)
-            .bold()
-            .tint(AppColors.color2)
-            .foregroundColor(AppColors.color4)
-            Button("Login as Guest") {
-                sceneManager.scene = .loggedIn
-            }
-            .buttonStyle(.borderedProminent)
-            .bold()
-            .tint(AppColors.color2)
-            .foregroundColor(AppColors.color4)
-            Button("Sign Up") {
-                showSignUp = true
-            }
+            .disabled(isDisabled)
             .buttonStyle(.borderedProminent)
             .bold()
             .tint(AppColors.color2)
             .foregroundColor(AppColors.color4)
         }
-        .textFieldStyle(.roundedBorder)
         .padding(.horizontal)
-        .popover(isPresented: $showSignUp) {
-            SignUpView()
-        }
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
+struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(user: UserDTO(email: "", password: ""))
-            .environmentObject(SceneManager())
+        SignUpView()
     }
 }
